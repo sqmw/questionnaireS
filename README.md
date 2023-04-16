@@ -1,4 +1,4 @@
-# questionnaire_web
+# questionnaire_web_Vue
 
 ## Project setup
 ```
@@ -20,14 +20,72 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 设计
 仅仅有用户和管理员
-用户：问卷的发起者，可以对问卷进行管理等操作
-管理员：该系统的所有者
-登陆的时候我们直接通过管理员或者是用户的账号来指定跳转的路由
+用户：  问卷的发起者，可以对问卷进行管理等操作
+管理员：该系统的所有者，拥有所有的操作权限
+答卷者：该问卷的回答者，不需要注册，仅仅需要答卷而已
+
+### 功能实现
+
+#### 区分管理员和用户
+管理员区别于用户在UI显示为管理员拥有后台管理的权限，可以对后台进行管理，管理员仅仅一个。
+管理员账号以admin开头，密码以admin开头
+
+#### 用户功能
+##### 设计发布问卷
+用户可以设计自己的问卷，并且对问卷进行管理，通过发送问卷的链接给别人就可以让别人回答问卷
+##### 设计模板
+类似设计问卷一样。
+但是设计问卷模板的时候需要用户自己编写问卷的详情
+#### 查看自己的问卷
+用户查看自己设计好的问卷，可以设置问卷的发布时间，以及手动关闭问卷。
+查看问卷的当前回答情况，并且使用图表展示（实现统计功能）
+
+#### 数据库设计
+
+```js
+user = {
+    email:"",
+    account:"",
+    nickname:"",
+    password:"",
+    status: 0,   // 表示问卷的状态，{1:正常, -1: 异常(禁止任何操作，包括登陆)}
+}
+// 登陆的时候通过账号和密码就可以登陆
+
+questionnaire={
+    content:"",   // 表示问卷的内容，json化的，和下面的template表的content一样
+    account:"",   // 表示问卷的拥有者
+    status:"",    // 用来表示当前问卷的状态，删除 | 存在
+    starttime:"", // 通过时间可以判定是否在运行中国，同时可以手动关闭问卷
+    stoptime:""
+}
+
+template = {
+    timeuse: 0, // 表示这个模板被使用的次数
+    content:"",
+    account:"", // 表示模板的拥有者 admin | user {admin:市场模板, user: 个人模板}
+    detail:"",  // 介绍模板的内容
+    img:""      // 展示模板
+}
+```
 
 可以查看特定人的答卷答题情况
-### 
+
+### 选取开发框架
+#### fronted 
+vue3(js) + elementPlus + bulma + echarts
+#### backend
+gin(go)
+#### db
+mysql
+
+## 介绍
+### 截图
+### 视频
+### API DOCS
+http:www.sqmw.top:9212/
+
+
