@@ -29,4 +29,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 管理员：该系统的所有者
 登陆的时候我们直接通过管理员或者是用户的账号来指定跳转的路由
 
+可以查看特定人的答卷答题情况
 ### 

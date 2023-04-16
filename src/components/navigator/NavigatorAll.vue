@@ -14,7 +14,7 @@
             <el-icon><location /></el-icon>
             <span>问卷中心</span>
           </template>
-          <el-menu-item index="1-1" @click="newQuestionnaire">创建问卷</el-menu-item>
+          <el-menu-item index="1-1" @click="newQuestionnaire">新建问卷</el-menu-item>
           <el-menu-item index="1-2" @click="myQuestionnaire">我的问卷</el-menu-item>
           <el-menu-item index="1-3" @click="binQuestionnaire">回收站</el-menu-item>
         </el-sub-menu>
@@ -24,18 +24,7 @@
             <el-icon><location /></el-icon>
             <span>个人中心</span>
           </template>
-          <el-sub-menu index="1-1">
-            <template #title>个人信息</template>
-            <el-menu-item index="1-1-1">new</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>信息修改</template>
-            <el-menu-item index="1-2-1">my</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>回收站</template>
-            <el-menu-item index="1-3-1">bin</el-menu-item>
-          </el-sub-menu>
+          <el-menu-item index="2-1" @click="personalInfo">个人信息</el-menu-item>
         </el-sub-menu>
 <!--        模板中心-->
         <el-sub-menu index="3">
@@ -43,38 +32,18 @@
             <el-icon><location /></el-icon>
             <span>模板中心</span>
           </template>
-          <el-sub-menu index="1-1">
-            <template #title>创建模板</template>
-            <el-menu-item index="1-1-1">new</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>我的模板</template>
-            <el-menu-item index="1-2-1">my</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>模板市场</template>
-            <el-menu-item index="1-3-1">bin</el-menu-item>
-          </el-sub-menu>
+          <el-menu-item index="3-1" @click="templateCreate">创建模板</el-menu-item>
+          <el-menu-item index="3-3" @click="templateMarket">模板市场</el-menu-item>
         </el-sub-menu>
 <!--        后台管理-->
         <!-- 这个仅仅对管理员开放-->
         <el-sub-menu index="4">
           <template #title>
             <el-icon><location /></el-icon>
-            <span>后台管理</span>
+            <span>后台管理(admin)</span>
           </template>
-          <el-sub-menu index="1-1">
-            <template #title>用户管理</template>
-            <el-menu-item index="1-1-1">new</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>访问监控</template>
-            <el-menu-item index="1-2-1">my</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="1-2">
-            <template #title>系统日志</template>
-            <el-menu-item index="1-3-1">bin</el-menu-item>
-          </el-sub-menu>
+          <el-menu-item index="4-1" @click="userManage">用户管理</el-menu-item>
+          <el-menu-item index="4-3" @click="accessMonitor">访问监控</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-col>
@@ -121,6 +90,12 @@ export default {
                 type: 'success',
                 message: `问卷名称:${value}`,
               })
+              this.$router.push({
+                path:"/home/QuestionnaireCreate",
+                query:{
+                  title: value
+                }
+              })
             }
           })
           .catch(() => {
@@ -129,7 +104,42 @@ export default {
               message: 'Input canceled',
             })
           })
-    }
+    },
+    myQuestionnaire(){
+      this.$router.push({
+        path:"/home/questionnaireCenter"
+      })
+    },
+    binQuestionnaire(){
+      this.$router.push({
+        path:"/home/questionnaireBin"
+      })
+    },
+    personalInfo(){
+      this.$router.push({
+        path:"/home/personalInfo"
+      })
+    },
+    templateCreate(){
+      this.$router.push({
+        path:"/home/templateCreate"
+      })
+    },
+    templateMarket(){
+      this.$router.push({
+        path:"/home/templateMarket"
+      })
+    },
+    userManage(){
+      this.$router.push({
+        path:"/home/userManage"
+      })
+    },
+    accessMonitor(){
+      this.$router.push({
+        path:"/home/accessMonitor"
+      })
+    },
   }
 }
 </script>

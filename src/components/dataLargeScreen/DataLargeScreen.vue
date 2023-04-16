@@ -60,6 +60,9 @@ export default {
   },
   methods:{
     showChart(chartDom,_option,_data,_title){
+      if(!chartDom){
+        return
+      }
       let myChart = echarts.init(chartDom,'dark');
       let option = _option??{
         title:_title??{
@@ -104,7 +107,11 @@ export default {
           this.myData[i] += Math.round(Math.random() * 200);
         }
       }
-      let myDynamicChart = echarts.init(document.querySelector('#answer-counter-asc'), 'dark');
+      const dom = document.querySelector('#answer-counter-asc')
+      if(!dom){
+        return
+      }
+      let myDynamicChart = echarts.init(dom, 'dark');
       myDynamicChart.setOption({
         series: [
           {
@@ -513,7 +520,7 @@ export default {
 
 <style scoped>
 #largeDataScreen {
-  position: fixed;
+  position: absolute;
 }
 .normal{
   width: 90%;

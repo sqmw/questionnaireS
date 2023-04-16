@@ -1,7 +1,7 @@
 <template>
   <div ref="value-box" @click="isEdit=true" :style="{width: width,display: 'inline'}">
     <span v-text="value" class="text-div" v-show="!isEdit" :style="{width: width}"></span>
-    <input type="text" v-model="value" class="text-input" v-show="isEdit || !value"/>
+    <input type="text" :value="value" class="text-input" v-show="isEdit || !value" @change="returnValChanged($event)"/>
   </div>
 </template>
 
@@ -13,22 +13,27 @@ export default {
   name: "HoverEdit",
   setup(){
     let isEdit = ref(false)
-    let value
     return {
       isEdit,
-      value
     }
+  },
+  model:{
+    prop: "value",
+    event: ""
   },
   props:{
     width:{
-      required:true,
+      required:false,
     },
-    val:{
+    value:{
       required: true
+    },
+    callback:{
+      required: false,
     }
   },
   created() {
-    this.value = ref(this.val)
+    this.val = ref(this.value)
   },
   mounted() {
     this.$refs["value-box"].onmouseenter = ()=>{
@@ -36,6 +41,11 @@ export default {
     }
     this.$refs["value-box"].onmouseleave = ()=>{
       this.isEdit = false
+    }
+  },
+  methods:{
+    returnValChanged(e){
+      this.$emit("getNewV",e)
     }
   }
 }

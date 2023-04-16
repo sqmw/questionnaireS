@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-        XXX问卷
+        XXX
     </div>
     <div class="left" :style="{width: leftWidth + '%'}" :class="{'scale-out-left': !isLeftOpen}">
       <NavigatorAll v-show="isLeftOpen"></NavigatorAll>
@@ -9,8 +9,8 @@
     <div class="main" :style="{width: (100 - leftWidth) + '%', left: leftWidth + '%'}">
       <el-icon class="left-top" v-show="isLeftOpen" @click="foldOrExpand"><Fold /></el-icon>
       <el-icon class="left-top" v-show="!isLeftOpen" @click="foldOrExpand"><Expand /></el-icon>
-      <div style="font-size: 20px">
-
+      <div style="font-size: 16px">
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
 
 <script>
 import {ref} from "vue";
-import NavigatorAll from "@/components/navigator/Navigator";
+import NavigatorAll from "@/components/navigator/NavigatorAll";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -53,6 +53,9 @@ export default {
       }
     }
   },
+  created() {
+
+  }
 
 }
 </script>
@@ -87,7 +90,7 @@ export default {
 }
 
 .left-top{
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   left: 0px;
   top: 0;
