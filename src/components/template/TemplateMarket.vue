@@ -24,8 +24,9 @@
       <div class="column is-one-fifths" style="display: flex;flex-direction: column;justify-content: space-around;">
         <div>使用次数: {{3}}</div>
         <div style="display: flex;justify-content: space-around;">
-          <button class="button is-info is-outlined is-rounded">使用</button>
-          <button class="button is-success is-outlined is-rounded">预览</button>
+          <button class="button is-small is-info is-outlined is-rounded">使用</button>
+          <button class="button is-small is-success is-outlined is-rounded">预览</button>
+          <button class="button is-small is-info is-outlined is-rounded">删除</button>
         </div>
       </div>
     </div>

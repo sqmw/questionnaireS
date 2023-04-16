@@ -48,27 +48,44 @@ npm run lint
 ```js
 user = {
     email:"",
-    account:"",
+    account:"",  // 用来代表id
     nickname:"",
     password:"",
-    status: 0,   // 表示问卷的状态，{1:正常, -1: 异常(禁止任何操作，包括登陆)}
+    status: 0,   // 表示问卷的状态，{1:正常, 0: 异常(禁止任何操作，包括登陆)}
 }
 // 登陆的时候通过账号和密码就可以登陆
 
+// 问卷开启后的链接直接由account + questionnaire_title 构成，因此不需要放在字段里面 
 questionnaire={
+    id:"",
     content:"",   // 表示问卷的内容，json化的，和下面的template表的content一样
     account:"",   // 表示问卷的拥有者
-    status:"",    // 用来表示当前问卷的状态，删除 | 存在
+    status:"",    // 用来表示当前问卷的状态， 存在 1 | 删除 0 | 彻底删除 在数据可直接删除
     starttime:"", // 通过时间可以判定是否在运行中国，同时可以手动关闭问卷
-    stoptime:""
+    stoptime:"",
 }
 
 template = {
+    id:"",
     timeuse: 0, // 表示这个模板被使用的次数
     content:"",
     account:"", // 表示模板的拥有者 admin | user {admin:市场模板, user: 个人模板}
     detail:"",  // 介绍模板的内容
     img:""      // 展示模板
+}
+
+// 答卷的结果
+answer_result = {
+    id:"",
+    account :"",        // 表示问卷的所有者
+    questinnaire_id:"", // 表示对应的questionnaire的id
+    starttime : "",
+    stoptime : "",
+    content: "",
+    answerer_info:{
+        ip: "",          // 答者的ip
+        other: ""        // 答者的其他信息，如姓名，性别，联系方式等
+    } //答者的信息
 }
 ```
 
@@ -85,7 +102,6 @@ mysql
 ## 介绍
 ### 截图
 ### 视频
-### API DOCS
 http:www.sqmw.top:9212/
-
-
+### API DOCS 
+http:www.sqmw.top:9212/
