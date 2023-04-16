@@ -104,4 +104,4 @@ mysql
 ### 视频
 http:www.sqmw.top:9212/
 ### API DOCS 
-http:www.sqmw.top:9212/
+https://github.com/sqmw/questionnaireVue/blob/main/api.md

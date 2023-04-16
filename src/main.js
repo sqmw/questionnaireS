@@ -5,9 +5,6 @@ import 'element-plus/dist/index.css';
 import router from './router/index'
 import "bulma/css/bulma.min.css";
 
-
-
-
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 const app = createApp(App)
 
