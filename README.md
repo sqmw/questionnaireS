@@ -60,7 +60,7 @@ questionnaire={
     id:"",
     content:"",   // 表示问卷的内容，json化的，和下面的template表的content一样
     account:"",   // 表示问卷的拥有者
-    status:"",    // 用来表示当前问卷的状态， 存在 1 | 删除 0 | 彻底删除 在数据可直接删除
+    status:"",    // 用来表示当前问卷的状态， 存在 1 （此时只要是在开始和结束的时间里面，问卷就可以进行回答）| 删除 0 | 彻底删除 在数据可直接删除 | -1 关闭
     starttime:"", // 通过时间可以判定是否在运行中国，同时可以手动关闭问卷
     stoptime:"",
 }
@@ -102,6 +102,9 @@ mysql
 ## 介绍
 ### 截图
 ### 视频
-http:www.sqmw.top:9212/
+
+[//]: # (规定，以后的每一个链接行开头都是 sq-link，方便以后更换域名这个ip的时候进行修改)
+
+sq-link: http:www.sqmw.top:9212/
 ### API DOCS 
 https://github.com/sqmw/questionnaireVue/blob/main/api.md
