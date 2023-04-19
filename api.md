@@ -6,7 +6,7 @@ localhost:8888
 返回值格式
 
 ```js
-{
+res = {
     status:1,          // 1 | 0 表示失败或者成功
     data: undefined,   // 表示post或者get数据的时候获取的数据就在这里面
     message: "修改成功" // 和status是对应的
@@ -63,7 +63,14 @@ localhost:8888
 | nickname | string   | 是       | 小雨          |
 | email    | string   | 是       | admin@123.com |
 | status   | int/char | 否       | 刚注册默认为1 |
-
+```json
+{
+    "account":"admin",
+    "password":"admin",
+    "nickname":"nick",
+    "email":"email"
+}
+```
 ##### 1.2.3 返回值
 
 ###### 1.2.3.1成功
@@ -122,7 +129,7 @@ localhost:8888
 
 #### 3.1地址
 
-/user/modify
+/user/update
 
 #### 3.2参数
 
@@ -131,8 +138,14 @@ localhost:8888
 | account  | string | 是       | adminXXX \| userXXX                   |
 | action   | string | 是       | 表示修改的数据 可以为 : status \| all |
 | data     | string | 是       | json string                           |
-
-```js
+```json
+{
+  "account": "admin",
+  "action": "status",
+  "data" :"1"
+}
+```
+```
 action ：
 	status : 表示的是修改当前的user的状态(由admin执行)，此时的data仅仅是一个数字
 	all    : 表示的是修改所有的信息，这个admin和user都可以操作，此时的data是一个user json 对象
@@ -162,7 +175,7 @@ action ：
 
 #### 4.1 地址
 
-/user/query
+/user/get
 
 > 已经登陆之后的用户查看自己的信息
 
@@ -200,7 +213,7 @@ action ：
 
 #### 1.1 地址
 
-/questionnaire/insert
+/questionnaire/add
 
 #### 1.2 参数
 
@@ -278,17 +291,18 @@ res = {
 
 ##### 3.3.1成功
 
-```json
-{
+```js
+const res = {
     status: 1, 
     message: null
 }
+// 此时需要将该问卷的所有的收集的结果全部删除
 ```
 
 ##### 3.3.2失败
 
-```json
-{
+```js
+const res = {
     status: 0, 
     message: null
 }
@@ -300,7 +314,7 @@ res = {
 
 #### 4.1 地址
 
-/questionnaire/modify
+/questionnaire/update
 
 #### 4.2 参数
 
@@ -338,7 +352,7 @@ res = {
 
 #### 1.1 地址
 
-/template/insert
+/template/add
 
 #### 1.2 参数
 
@@ -443,7 +457,7 @@ res = {
 
 #### 1.1 地址
 
-/answer
+/answer/get
 
 > 1. 需要对问卷的开启时间，关闭时间进行判定，如果超出时间，就返回问卷已经关闭
 > 2. 如果问卷当前是关闭状态，同样返回问卷已经关闭
@@ -481,7 +495,7 @@ res = {
 
 #### 2.1 地址
 
-/submit
+/answer/add
 
 #### 2.2 参数
 
